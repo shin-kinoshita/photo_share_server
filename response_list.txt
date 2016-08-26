@@ -1,0 +1,93 @@
+# do_get_login
+-- send header --
+- "mode: login"
+- "user_id: ___"
+-- response header --
+- "Content type: text/plain"
+-- response body --
+ユーザーネームが見つからない時
+- "message:not found you account"
+ユーザーネームが見つかった時
+- "message:found your account,user_id:___,user_name:___"
+
+# do_get_user_register
+-- send header --
+- "mode: user_register"
+-- send body --
+- "___"     # ユーザーネーム
+-- response header
+- "Content type: text/plain"
+-- response body --
+- "message:server registered your account successfully,user_id:___,user_name:___"
+
+# do_get_event_register
+-- send header --
+- "mode: event_register"
+- "user_id: ___"
+-- send body --
+- "___"     # イベント名
+-- response header
+- "Content type: text/plain"
+-- response body --
+- "message:server registered event to your account,user_id:___,event_name:___"
+
+# do_get_event_info
+-- send header --
+- "mode: event_info"
+- "user_id: ___"
+-- send body --
+- "___"     # イベント名
+-- response header
+- "Content type: text/plain"
+-- response body --
+- "message:user_id_list registered to event is shown,user_id_list:___,___,...."
+
+# do_get_download
+-- send header --
+- "mode: download"
+- "user_id: ___"
+取得する画像があるとき
+-- response header --
+- "Content-type: image/拡張子"
+- "remained_image_count: __"
+- "image_name: ___"
+-- response body --
+- 画像ファイル
+
+取得する画像がないとき
+-- response header --
+- "remained_image_count: no image to return"
+
+# do_post_share
+-- send header --
+- "mode: share"
+- "user_id: ___"
+-- send body --
+- image_id=___
+- to_user_id=___,___,.....
+-- response header --
+- "Content type: text/plain"
+-- response body --
+- "message:server shared image,image_id:___"
+
+# do_post_upload
+-- send header --
+- "mode: upload"
+- "user_id: ___"
+-- send body --
+- image=@___
+-- response header --
+- "Content type: text/plain"
+-- response body --
+- "message:server got and saved your image,image_id:___,image_name:___" 
+
+# do_post_train_upload
+-- send header --
+- "mode: train_upload"
+- "user_id: ___"
+-- send body --
+- image=@___
+-- response header --
+- "Content type: text/plain"
+-- response body --
+- "message:server got and saved your train image,image_id:___,image_name:___" 
