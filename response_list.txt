@@ -70,6 +70,18 @@
 -- response body --
 - "message:server shared image,image_id:___"
 
+# do_post_share2
+-- send header --
+- "mode: share2"
+- "user_id: ___"
+-- send body --
+- image=@___
+- to_user_id=___,___,.....
+-- response header --
+- "Content type: text/plain"
+-- response body --
+- "message:server saved and shared your image,image_id:___,image_name:___"
+
 # do_post_upload
 -- send header --
 - "mode: upload"
@@ -91,3 +103,4 @@
 - "Content type: text/plain"
 -- response body --
 - "message:server got and saved your train image,image_id:___,image_name:___" 
+

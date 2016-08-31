@@ -8,6 +8,7 @@ import do_get_download
 import do_post_upload
 import do_post_train_upload
 import do_post_share
+import do_post_share2
 from do_get_login import do_get_login
 from do_get_user_register import do_get_user_register
 from do_get_event_register import do_get_event_register
@@ -16,8 +17,9 @@ from do_get_download import do_get_download
 from do_post_upload import do_post_upload
 from do_post_train_upload import do_post_train_upload
 from do_post_share import do_post_share
+from do_post_share2 import do_post_share2
 
-HOST_NAME = '192.168.1.133' # !!!REMEMBER TO CHANGE THIS!!!
+HOST_NAME = '192.168.1.148' # !!!REMEMBER TO CHANGE THIS!!!
 PORT_NUMBER = 9000      # Maybe set this to 9000.
 
 class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
@@ -57,6 +59,8 @@ class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
             do_post_train_upload(self)
         elif mode == 'share':
             do_post_share(self)
+        elif mode == 'share2':
+            do_post_share2(self)
         else :
             do_error(self, 'mode not hit')
             

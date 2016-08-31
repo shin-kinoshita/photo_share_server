@@ -21,6 +21,10 @@ def do_get_download(handler):
 
     update_is_shared(image_id, user_id)
 
+    # For testing, false will be set to all is_shared property
+    if count - 1 <= 0:
+        update_is_shared_false(user_id)
+
     # Response -- header --
     handler.send_response(200)
     handler.send_header("Content-type", "image/" + image_ext)
@@ -68,5 +72,14 @@ def update_is_shared(image_id, to_user_id):
     column = 'is_shared'
     value  = '\'true\''
     where  = 'image_id = {} AND to_user_id = {}'.format(image_id, to_user_id)
+    mysql_obj.update(table, column, value, where)
+
+def update_is_shared_false(to_user_id):
+    mysql_obj = mysql_method.MysqlObject('mysql_test', 'mysql', 'photo_share_app')
+    mysql_obj.connect()
+    table = 'share_images'
+    column = 'is_shared'
+    value  = '\'false\''
+    where  = 'to_user_id = {}'.format(to_user_id)
     mysql_obj.update(table, column, value, where)
 
