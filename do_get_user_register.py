@@ -11,7 +11,7 @@ def do_get_user_register(handler):
 
     mysql_obj = mysql_method.MysqlObject('mysql_test', 'mysql', 'photo_share_app')
     mysql_obj.connect()
-    user_id = mysql_obj.table_row_count('users') + 1
+    user_id = mysql_obj.table_row_count('users')
     table_name = 'users'
     table      = '(user_id, user_name, event)'
     values     = '(\'{}\', \'{}\', NULL)'.format(user_id, user_name)

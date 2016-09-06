@@ -7,8 +7,10 @@
 -- response body --
 ユーザーネームが見つからない時
 - "message:not found you account"
-ユーザーネームが見つかった時
+ユーザーネームは見つかるがイベントが見つからない時
 - "message:found your account,user_id:___,user_name:___"
+ユーザーネームもイベントも見つかった時
+- "message:found your account,user_id:___,user_name:___,event_name:___"
 
 # do_get_user_register
 -- send header --
@@ -40,7 +42,8 @@
 -- response header
 - "Content type: text/plain"
 -- response body --
-- "message:user_id_list registered to event is shown,user_id_list:___,___,...."
+- "message:user_id_list registered to event is shown,user_id_list:123_456_....,user_name_list:shin_yusuke_....."
+上のuser_id_listとuser_name_listの値の"_"は区切り文字になっているので注意
 
 # do_get_download
 -- send header --
@@ -80,7 +83,7 @@
 -- response header --
 - "Content type: text/plain"
 -- response body --
-- "message:server saved and shared your image,image_id:___,image_name:___"
+- "message:server saved and shared your image,image_id:___,image_name:___,to_user_id:___,___...."
 
 # do_post_upload
 -- send header --

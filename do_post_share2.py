@@ -20,6 +20,7 @@ def do_post_share2(handler):
                  'CONTENT_TYPE':handler.headers['Content-Type'],
                  })
     image_name, image = _extract_image(form)
+    
     to_user_id_list = [int(i) for i in form['to_user_id'].value.split(',')]
 
     image_ext = image_name.split('.')[1]

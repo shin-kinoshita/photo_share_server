@@ -7,17 +7,22 @@ def do_get_login(handler):
 
     mysql_obj = mysql_method.MysqlObject('mysql_test', 'mysql', 'photo_share_app')
     mysql_obj.connect()
-    column = 'user_name'
+    column = 'user_name, event'
     table  = 'users'
     where  = 'user_id=\'{}\''.format(user_id)
     cursor, count = mysql_obj.select(column, table, where)
     user_name = ''
 
     if count == 0:
-        body_msg = 'not found your account'
+        body_msg = 'message:not found your account'
     else:
-        user_name = cursor.next()[0]
-        body_msg = 'found your account,user_id:{},user_name:{}'.format(user_id, user_name)
+        result = cursor.next()
+        user_name = result[0]
+        event_name = result[1] 
+        if event_name == None:
+            body_msg = 'message:found your account,user_id:{},user_name:{}'.format(user_id, user_name)
+        else:
+            body_msg = 'message:found your account,user_id:{},user_name:{},event_name:{}'.format(user_id, user_name, event_name)
         
     # Response -- header --
     handler.send_response(200)
