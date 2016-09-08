@@ -5,7 +5,7 @@ def do_get_login(handler):
 
     user_id = handler.headers['user_id']
 
-    mysql_obj = mysql_method.MysqlObject('mysql_test', 'mysql', 'photo_share_app')
+    mysql_obj = mysql_method.MysqlObject(database='photo_share_app')
     mysql_obj.connect()
     column = 'user_name, event'
     table  = 'users'

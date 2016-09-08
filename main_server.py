@@ -21,7 +21,7 @@ from do_post_train_upload import do_post_train_upload
 from do_post_share import do_post_share
 from do_post_share2 import do_post_share2
 
-HOST_NAME = '192.168.1.148' # !!!REMEMBER TO CHANGE THIS!!!
+HOST_NAME = '192.168.1.150' # !!!REMEMBER TO CHANGE THIS!!!
 PORT_NUMBER = 9000      # Maybe set this to 9000.
 
 class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):

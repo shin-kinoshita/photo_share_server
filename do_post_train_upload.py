@@ -30,10 +30,10 @@ def do_post_train_upload(handler):
     image_save_path = image_save_dir + '/' + str(image_id) + '.' + image_ext
     image.save(image_save_path)
     
-    mysql_obj = mysql_method.MysqlObject('mysql_test', 'mysql', 'photo_share_app')
+    mysql_obj = mysql_method.MysqlObject(database='photo_share_app')
     mysql_obj.connect()
     table_name = 'train_images'
-    table      = '(train_image_id, image_name, user_id, upload_time)'
+    table      = '(image_id, image_name, user_id, upload_time)'
     values     = '({}, \'{}\', {}, now())'.format(image_id, image_name, user_id)
     mysql_obj.insert_into(table_name, table, values)
     mysql_obj.disconnect()
@@ -44,7 +44,7 @@ def do_post_train_upload(handler):
     handler.end_headers()
     # Response -- body --
     handler.wfile.write('message:server got and saved your train image,')
-    handler.wfile.write('train_image_id:{},'.format(image_id))
+    handler.wfile.write('image_id:{},'.format(image_id))
     handler.wfile.write('image_name:{}'.format(image_name))
 
     return

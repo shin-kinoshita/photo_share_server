@@ -9,7 +9,7 @@ def do_get_user_register(handler):
 
     user_name = param[1]
 
-    mysql_obj = mysql_method.MysqlObject('mysql_test', 'mysql', 'photo_share_app')
+    mysql_obj = mysql_method.MysqlObject(database='photo_share_app')
     mysql_obj.connect()
     user_id = mysql_obj.table_row_count('users')
     table_name = 'users'

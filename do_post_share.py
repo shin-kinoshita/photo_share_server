@@ -18,7 +18,7 @@ def do_post_share(handler):
     to_user_id_list = [int(i) for i in form['to_user_id'].value.split(',')]
     from_user_id    = handler.headers['user_id']
     
-    mysql_obj = mysql_method.MysqlObject('mysql_test', 'mysql', 'photo_share_app')
+    mysql_obj = mysql_method.MysqlObject(database='photo_share_app')
     mysql_obj.connect()
     for to_user_id in to_user_id_list:
         table_name = 'share_images'

@@ -37,7 +37,7 @@ def do_get_download(handler):
     return 
 
 def select_download_image(to_user_id):
-    mysql_obj = mysql_method.MysqlObject('mysql_test', 'mysql', 'photo_share_app')
+    mysql_obj = mysql_method.MysqlObject(database='photo_share_app')
     mysql_obj.connect()
     column = 'image_id'
     table = 'share_images'
@@ -53,7 +53,7 @@ def select_download_image(to_user_id):
 
 def import_image_from_id(image_id):
     image_save_dir = 'images'
-    mysql_obj = mysql_method.MysqlObject('mysql_test', 'mysql', 'photo_share_app')
+    mysql_obj = mysql_method.MysqlObject(database='photo_share_app')
     mysql_obj.connect()
     column = 'image_name'
     table  = 'images'
@@ -66,7 +66,7 @@ def import_image_from_id(image_id):
     return image_name, f_image
 
 def update_is_shared(image_id, to_user_id):
-    mysql_obj = mysql_method.MysqlObject('mysql_test', 'mysql', 'photo_share_app')
+    mysql_obj = mysql_method.MysqlObject(database='photo_share_app')
     mysql_obj.connect()
     table = 'share_images'
     column = 'is_shared'
@@ -75,7 +75,7 @@ def update_is_shared(image_id, to_user_id):
     mysql_obj.update(table, column, value, where)
 
 def update_is_shared_false(to_user_id):
-    mysql_obj = mysql_method.MysqlObject('mysql_test', 'mysql', 'photo_share_app')
+    mysql_obj = mysql_method.MysqlObject(database='photo_share_app')
     mysql_obj.connect()
     table = 'share_images'
     column = 'is_shared'

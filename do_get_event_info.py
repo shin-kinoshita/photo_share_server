@@ -10,7 +10,7 @@ def do_get_event_info(handler):
     event_name = param[1]
     user_id    = handler.headers['user_id']
 
-    mysql_obj = mysql_method.MysqlObject('mysql_test', 'mysql', 'photo_share_app')
+    mysql_obj = mysql_method.MysqlObject(database='photo_share_app')
     mysql_obj.connect()
     column = 'user_id, user_name'
     table = 'users'
