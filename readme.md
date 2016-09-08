@@ -16,7 +16,7 @@ pip install MySQL-python
 pip install mysql-connector-python-rf
  ```
 
-3. 以下コマンドでデータベースを構築
+3. 以下コマンドでデータベースを構築<br>
 (注)以下コマンド実行前にphoto_share_serverによるデータベースが構築するされている場合、保存されているデータば全て削除される。
  ```
 python init_database.py user_name password
