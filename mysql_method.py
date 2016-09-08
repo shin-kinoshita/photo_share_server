@@ -43,8 +43,20 @@ class MysqlObject:
         
         self._connector.commit()
 
+    def delete_user(self, username, hostname):
+        query = "DROP USER {}@{}".format(username, hostname)
+
+        self._cursor.execute(query)
+        self._connector.commit()
+
     def create_database(self, database_name):
         query = 'CREATE DATABASE {}'.format(database_name)
+
+        self._cursor.execute(query)
+        self._connector.commit()
+
+    def delete_database(self, database_name):
+        query = 'DROP DATABASE {}'.format(database_name)
 
         self._cursor.execute(query)
         self._connector.commit()
@@ -79,6 +91,15 @@ class MysqlObject:
         self._cursor.execute(query)
 
         return self._cursor, count
+
+    def show(self, category, like=None):
+        if like == None:
+            query = "SHOW {}".format(category)
+        else:
+            query = "SHOW {} LIKE '{}'".format(category, like)
+        
+        self._cursor.execute(query)
+        return self._cursor
 
     def update(self, table, column, value, where=None):
         if where == None:
