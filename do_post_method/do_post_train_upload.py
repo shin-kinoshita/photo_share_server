@@ -9,7 +9,7 @@ import os
 
 def do_post_train_upload(handler):
 
-    image_save_dir = 'train_images'
+    image_save_dir = '../train_images'
 
     user_id = handler.headers['user_id']
 

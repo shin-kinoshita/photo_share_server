@@ -1,6 +1,7 @@
 import sys
 sys.path.append('./do_get_method')
 sys.path.append('./do_post_method')
+sys.path.append('./mysql_method')
 import BaseHTTPServer
 import time
 import do_get_login

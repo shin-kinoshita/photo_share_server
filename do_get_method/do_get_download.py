@@ -54,7 +54,7 @@ def select_download_image(to_user_id):
     return image_id, count
 
 def import_image_from_id(image_id):
-    image_save_dir = 'images'
+    image_save_dir = '../images'
     mysql_obj = mysql_method.MysqlObject(database='photo_share_app')
     mysql_obj.connect()
     column = 'image_name'

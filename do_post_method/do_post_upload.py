@@ -5,12 +5,11 @@ import cgi
 from PIL import Image
 import StringIO
 import mysql_method
-import do_post_method as post
 import os
 
 def do_post_upload(handler):
 
-    image_save_dir = 'images'
+    image_save_dir = '../images'
 
     user_id = handler.headers['user_id']
 
