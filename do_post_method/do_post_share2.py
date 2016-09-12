@@ -1,9 +1,10 @@
+import sys
+sys.path.append('../mysql_method')
 import BaseHTTPServer
 import cgi
 from PIL import Image
 import StringIO
 import mysql_method
-import do_post_method as post
 import os
 
 def do_post_share2(handler):
@@ -21,7 +22,7 @@ def do_post_share2(handler):
                  })
     image_name, image = _extract_image(form)
     
-    to_user_id_list = [int(i) for i in form['to_user_id'].value.split(',')]
+    to_user_id_list = detect_to_user(user_id, image)
 
     image_ext = image_name.split('.')[1]
     num_save_dir = len(os.listdir(image_save_dir))

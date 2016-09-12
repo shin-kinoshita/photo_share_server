@@ -79,7 +79,6 @@
 - "user_id: ___"
 -- send body --
 - image=@___
-- to_user_id=___,___,.....
 -- response header --
 - "Content type: text/plain"
 -- response body --

@@ -1,3 +1,5 @@
+import sys
+sys.path.append('../mysql_method')
 import BaseHTTPServer
 import cgi
 from PIL import Image
@@ -6,9 +8,9 @@ import mysql_method
 import do_post_method as post
 import os
 
-def do_post_train_upload(handler):
+def do_post_upload(handler):
 
-    image_save_dir = 'train_images'
+    image_save_dir = 'images'
 
     user_id = handler.headers['user_id']
 
@@ -32,7 +34,7 @@ def do_post_train_upload(handler):
     
     mysql_obj = mysql_method.MysqlObject(database='photo_share_app')
     mysql_obj.connect()
-    table_name = 'train_images'
+    table_name = 'images'
     table      = '(image_id, image_name, user_id, upload_time)'
     values     = '({}, \'{}\', {}, now())'.format(image_id, image_name, user_id)
     mysql_obj.insert_into(table_name, table, values)
@@ -43,7 +45,7 @@ def do_post_train_upload(handler):
     handler.send_header("Content-type", "text/plain")
     handler.end_headers()
     # Response -- body --
-    handler.wfile.write('message:server got and saved your train image,')
+    handler.wfile.write('message:server got and saved your image,')
     handler.wfile.write('image_id:{},'.format(image_id))
     handler.wfile.write('image_name:{}'.format(image_name))
 

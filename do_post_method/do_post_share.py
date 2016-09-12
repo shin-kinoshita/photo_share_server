@@ -1,3 +1,5 @@
+import sys
+sys.path.append('../mysql_method')
 import BaseHTTPServer
 import cgi
 from PIL import Image
