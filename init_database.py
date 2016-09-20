@@ -1,4 +1,5 @@
 import sys
+sys.path.append('./mysql_method')
 import mysql_method
 
 operate_user_name = 'root'
