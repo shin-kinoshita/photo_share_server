@@ -7,9 +7,7 @@ import StringIO
 import mysql_method
 import os
 
-def do_post_train_upload(handler):
-
-    image_save_dir = '../train_images'
+def do_post_train_upload(handler, image_save_dir):
 
     user_id = handler.headers['user_id']
 
@@ -26,7 +24,7 @@ def do_post_train_upload(handler):
 
     image_ext = image_name.split('.')[1]
     num_save_dir = len(os.listdir(image_save_dir))
-    image_id = num_save_dir + 1
+    image_id = num_save_dir
 
     image_save_path = image_save_dir + '/' + str(image_id) + '.' + image_ext
     image.save(image_save_path)

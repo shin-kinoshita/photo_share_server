@@ -5,8 +5,7 @@ import mysql_method
 from PIL import Image
 import StringIO
 
-def do_get_download(handler):
-
+def do_get_download(handler, image_save_dir):
     user_id = handler.headers['user_id']
 
     image_id, count = select_download_image(user_id)
@@ -18,7 +17,7 @@ def do_get_download(handler):
         handler.end_headers()
         return 
 
-    image_name, f_image = import_image_from_id(image_id)
+    image_name, f_image = import_image_from_id(image_id, image_save_dir)
     image_ext = image_name.split('.')[1]
 
     update_is_shared(image_id, user_id)
@@ -53,8 +52,7 @@ def select_download_image(to_user_id):
     #mysql_obj.disconnect()
     return image_id, count
 
-def import_image_from_id(image_id):
-    image_save_dir = '../images'
+def import_image_from_id(image_id, image_save_dir):
     mysql_obj = mysql_method.MysqlObject(database='photo_share_app')
     mysql_obj.connect()
     column = 'image_name'
