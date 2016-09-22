@@ -2,6 +2,7 @@ import sys
 sys.path.append('./do_get_method')
 sys.path.append('./do_post_method')
 sys.path.append('./mysql_method')
+sys.path.append('./face_recognition')
 import BaseHTTPServer
 import time
 import do_get_login
@@ -28,8 +29,8 @@ from do_post_share2 import do_post_share2
 HOST_NAME = '192.168.1.150' # !!!REMEMBER TO CHANGE THIS!!!
 PORT_NUMBER = 9000      # Maybe set this to 9000.
 
-image_save_dir = './images'
-train_image_save_dir = './train_images'
+images_dir = './images'
+train_images_dir = './train_images'
 
 class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 
@@ -51,7 +52,7 @@ class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         elif mode == 'event_info':
             do_get_event_info(self)
         elif mode == 'download':
-            do_get_download(self, image_save_dir)
+            do_get_download(self, images_dir)
         else :
             do_error(self, 'mode not hit')
 
@@ -65,9 +66,9 @@ class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         mode = self.headers['mode']
 
         if mode == 'train_upload':
-            do_post_train_upload(self, train_image_save_dir)
+            do_post_train_upload(self, train_images_dir)
         elif mode == 'share2':
-            do_post_share2(self, image_save_dir)
+            do_post_share2(self, images_dir, train_images_dir)
         else :
             do_error(self, 'mode not hit')
             

@@ -56,7 +56,7 @@ def create_tables(user_name, password, database_name):
   mysql_obj.create_table(database_name, share_images_table, share_images_elements, share_images_types)
 
   train_images_table = 'train_images'
-  train_images_elements = ['image_id', 'image_name', 'user_id', 'upload_time']
+  train_images_elements = ['image_index', 'image_name', 'user_id', 'upload_time']
   train_images_types    = ['int', 'varchar(100)', 'int', 'datetime']
   mysql_obj.create_table(database_name, train_images_table, train_images_elements, train_images_types)
 

@@ -7,7 +7,7 @@ import StringIO
 import mysql_method
 import os
 
-def do_post_train_upload(handler, image_save_dir):
+def do_post_train_upload(handler, train_images_dir):
 
     user_id = handler.headers['user_id']
 
@@ -23,17 +23,19 @@ def do_post_train_upload(handler, image_save_dir):
     #face_name_list    = extract_name_list(image, face_rec_list)
 
     image_ext = image_name.split('.')[1]
-    num_save_dir = len(os.listdir(image_save_dir))
-    image_id = num_save_dir
+    user_save_dir = train_images_dir + '/' + str(user_id)
+    if not os.path.exists(user_save_dir):
+        os.mkdir(user_save_dir)
+    image_index = len(os.listdir(user_save_dir))
 
-    image_save_path = image_save_dir + '/' + str(image_id) + '.' + image_ext
+    image_save_path = user_save_dir+ '/' + str(image_index) + '.' + image_ext
     image.save(image_save_path)
     
     mysql_obj = mysql_method.MysqlObject(database='photo_share_app')
     mysql_obj.connect()
     table_name = 'train_images'
-    table      = '(image_id, image_name, user_id, upload_time)'
-    values     = '({}, \'{}\', {}, now())'.format(image_id, image_name, user_id)
+    table      = '(image_index, image_name, user_id, upload_time)'
+    values     = '({}, \'{}\', {}, now())'.format(image_index, image_name, user_id)
     mysql_obj.insert_into(table_name, table, values)
     mysql_obj.disconnect()
     
@@ -43,7 +45,7 @@ def do_post_train_upload(handler, image_save_dir):
     handler.end_headers()
     # Response -- body --
     handler.wfile.write('message:server got and saved your train image,')
-    handler.wfile.write('image_id:{},'.format(image_id))
+    handler.wfile.write('image_index:{},'.format(image_index))
     handler.wfile.write('image_name:{}'.format(image_name))
 
     return
